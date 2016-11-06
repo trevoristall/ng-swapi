@@ -11,5 +11,5 @@ app.controller('mainController', ['$scope', '$http', function ($scope, $http) {
 			console.log(data);
 		});
 
-	$scope.searchQuery = '';
+	$scope.query = '';
 }]);
