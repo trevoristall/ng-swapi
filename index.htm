@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="app">
+    <head>
+        <title>AngularJS SWAPI</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+        
+        <!-- load angular via CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="app.js"></script>
+        <style>
+        .card {
+            min-height: 12em;
+        }
+        </style>
+    </head>
+    <body>
+
+        <header>
+			<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">AngularJS SWAPI with simple filter</a>
+				</div>
+			</div>
+			</nav>
+		</header>
+
+        <div class="container">
+			<div ng-controller="mainController">
+                <div class="form-group">
+                    <label for="search">Search by name</label><br>
+                    <input type="text" name="search" ng-model="query">
+                    <div ng-repeat="person in people | filter:query as filtered"></div>
+                    <p>{{filtered.length}} results</p>
+                </div>
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-3" ng-repeat="p in people | filter : query: p.name">
+                                <div class="card">
+                                <div class="card-block">
+                                    <h4 class="card-title">{{p.name}}</h4>
+                                    <ul>
+                                        <li>{{p.height * (0.39 / 12) | number:2}} feet tall</li>
+                                        <li>{{p.eye_color}} eyes</li>
+                                        <li ng-if="p.hair_color != 'n/a' && p.hair_color != 'none'">{{p.hair_color}} hair</li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>
